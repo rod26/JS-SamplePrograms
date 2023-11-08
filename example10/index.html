@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+    <style>
+      /* Style the interface using CSS */
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+      }
+
+      #todoList {
+        width: 300px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        margin: 10px 5px;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 5px;
+      }
+
+      .task-text {
+        flex-grow: 1;
+        margin-right: 10px;
+      }
+
+      button.edit {
+        background-color: #2196f3;
+      }
+
+      button.remove {
+        background-color: #f44336;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="todoList">
+      <h1>Todo List</h1>
+      <input type="text" id="newTodo" placeholder="Enter a new task" />
+      <button id="addTodo">Add Task</button>
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      // JavaScript for the todo list
+      document.getElementById("addTodo").addEventListener("click", function () {
+        const newTask = document.getElementById("newTodo").value;
+        if (newTask.trim() === "") {
+          alert("Task name cannot be empty.");
+        } else {
+          const taskList = document.getElementById("taskList");
+          const listItem = document.createElement("li");
+
+          const taskText = document.createElement("span");
+          taskText.textContent = newTask;
+          taskText.classList.add("task-text");
+
+          const editButton = document.createElement("button");
+          editButton.textContent = "Edit";
+          editButton.classList.add("edit");
+          editButton.addEventListener("click", function () {
+            const updatedTask = prompt("Edit task:", taskText.textContent);
+            if (updatedTask !== null) {
+              taskText.textContent = updatedTask;
+            }
+          });
+
+          const removeButton = document.createElement("button");
+          removeButton.textContent = "Remove";
+          removeButton.classList.add("remove");
+          removeButton.addEventListener("click", function () {
+            taskList.removeChild(listItem);
+          });
+
+          listItem.appendChild(taskText);
+          listItem.appendChild(editButton);
+          listItem.appendChild(removeButton);
+
+          taskList.appendChild(listItem);
+          document.getElementById("newTodo").value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
