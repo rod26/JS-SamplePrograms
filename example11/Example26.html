@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>printTime</title>
+  </head>
+  <body>
+    <script>
+      function printTime() {
+        let francis = new Date();
+        let hours = francis.getHours();
+        let mins = francis.getMinutes();
+        let seconds = francis.getSeconds();
+        document.body.innerHTML = hours + ":" + mins + ":" + seconds;
+      }
+
+      setInterval(printTime, 1000);
+    </script>
+  </body>
+</html>
